@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Silent Tab 浏览器能力管理后台">
+  <title>Silent Tab</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body class="options-page">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <section class="connect-shell" id="connect-view">
+    <div class="connect-visual" aria-hidden="true">
+      <div class="brand-mark brand-mark-large"><span></span><span></span><span></span></div>
+      <p class="eyebrow">SILENT TAB / BROWSER BRIDGE</p>
+      <h1>让网页能力成为<br>AI 的本地工具。</h1>
+      <p>复用你已经登录的网页，通过本机服务为更多 AI 网站提供统一入口。</p>
+      <div class="connect-pulse"><i></i> Local only · 127.0.0.1</div>
+    </div>
+    <form class="connect-form" id="connect-form">
+      <div><p class="section-kicker">首次连接</p><h2>连接 Silent Tab</h2><p class="muted">凭据只保存在 Chrome 本地。连接成功后将进入管理后台。</p></div>
+      <label><span>服务地址</span><input id="backend-url" type="url" spellcheck="false" placeholder="http://127.0.0.1:8765" required></label>
+      <label><span>Browser Token</span><input id="token" type="password" autocomplete="off" spellcheck="false" required></label>
+      <button class="primary-button wide" type="submit">连接并进入后台</button>
+      <p id="connect-message" class="form-message" role="status"></p>
+    </form>
+  </section>
+
+  <div class="console-shell" id="console-view" hidden>
+    <aside class="console-sidebar">
+      <div class="console-brand"><div class="brand-mark"><span></span><span></span><span></span></div><div><strong>Silent Tab</strong><small>Browser Bridge</small></div></div>
+      <nav class="console-nav" aria-label="后台导航">
+        <button class="nav-item active" type="button" data-page="overview"><span>01</span>概览</button>
+        <button class="nav-item" type="button" data-page="adapters"><span>02</span>网页适配器</button>
+        <button class="nav-item" type="button" data-page="api"><span>03</span>API 调用</button>
+        <button class="nav-item" type="button" data-page="settings"><span>04</span>连接设置</button>
+      </nav>
+      <div class="sidebar-status"><span class="status-dot" id="sidebar-status-dot"></span><div><strong id="sidebar-status-title">读取状态中</strong><small id="sidebar-status-detail">正在连接本机服务</small></div></div>
+    </aside>
+
+    <main class="console-main" id="main-content">
+      <header class="console-topbar"><div><p class="section-kicker">Browser capability hub</p><h2 id="page-title">运行概览</h2></div><button class="quiet-button" id="reconnect" type="button">重新连接</button></header>
+      <section class="console-page active" data-page-panel="overview">
+        <div class="hero-status"><div><span class="status-label">CURRENT STATUS</span><h3 id="hero-status">正在连接</h3><p id="hero-copy">正在读取扩展与 Silent Tab 服务的连接状态。</p></div><div class="signal-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></div></div>
+        <div class="metric-grid">
+          <article><span>当前适配器</span><strong>ChatGPT Web</strong><small>网页登录态复用</small></article>
+          <article><span>调用方式</span><strong>Local REST + SSE</strong><small>免 Token 本机接口</small></article>
+          <article><span>执行模式</span><strong>后台静默</strong><small>不抢占当前标签页</small></article>
+        </div>
+        <section class="content-section"><div class="section-heading"><div><p class="section-kicker">Quick start</p><h3>把调用方式直接交给 AI</h3></div><button class="text-button" type="button" data-open-page="api">查看全部 API →</button></div><div class="quick-command" id="overview-command"><code></code><button type="button" data-copy-target="overview-command">复制</button></div></section>
+      </section>
+
+      <section class="console-page" data-page-panel="adapters"><div class="section-intro"><p>站点适配器</p><h3>统一管理不同 AI 网页</h3><span>每个适配器独立维护页面识别规则，后续可以继续接入更多网站。</span></div><div class="adapter-grid" id="adapter-grid"></div></section>
+      <section class="console-page" data-page-panel="api"><div class="section-intro"><p>Local API</p><h3>复制即可调用</h3><span>以下接口只接受本机请求，无需在命令中携带 Browser Token。</span></div><div class="api-list" id="api-list"></div></section>
+      <section class="console-page" data-page-panel="settings">
+        <div class="section-intro"><p>Connection</p><h3>本机连接设置</h3><span>修改后扩展会立即断开并使用新配置重新连接。</span></div>
+        <form class="settings-card" id="settings-form">
+          <label><span>后端地址</span><input id="settings-backend-url" type="url" spellcheck="false" required></label>
+          <label><span>Browser Token</span><input id="settings-token" type="password" autocomplete="off" spellcheck="false" required></label>
+          <div class="settings-actions"><button class="primary-button" type="submit">保存并重新连接</button><button class="danger-button" id="disconnect" type="button">退出后台</button></div>
+          <p id="settings-message" class="form-message" role="status"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="options.mjs"></script>
+</body>
+</html>

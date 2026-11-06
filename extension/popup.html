@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Silent Tab</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body class="popup-page">
+  <main class="popup-card">
+    <header class="popup-header">
+      <div class="console-brand compact"><div class="brand-mark"><span></span><span></span><span></span></div><div><strong>Silent Tab</strong><small>Browser Bridge</small></div></div>
+      <span class="connection-badge"><i class="status-dot" id="status-dot"></i><b id="status-text">读取中</b></span>
+    </header>
+    <section class="popup-intro"><p>LOCAL AI API</p><h1>复制，让 AI 直接调用。</h1><span>免 Token · 后台静默 · 仅限本机</span></section>
+    <div class="popup-api-list" id="popup-api-list"></div>
+    <footer class="popup-footer"><button id="reconnect" type="button">重新连接</button><button id="options" type="button">打开管理后台 →</button></footer>
+  </main>
+  <script type="module" src="popup.mjs"></script>
+</body>
+</html>

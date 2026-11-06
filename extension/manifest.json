@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Silent Tab",
+  "version": "0.4.0",
+  "description": "独立的本地浏览器能力桥接器，通过站点适配器安全复用网页登录态。",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.mjs",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Silent Tab",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}
